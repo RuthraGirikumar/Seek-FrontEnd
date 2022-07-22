@@ -1,0 +1,54 @@
+<section>
+  <div class="div-left">
+    <div class="underline"></div>
+
+    <p style="font-size: 16px"><b>Search for keywords</b></p>
+
+    <p class="search">
+      <img src="assets/icons8-search-24.png" alt="searchicon" />
+      <input (input)="searchTable($event.target)" type="text" placeholder="Filter courses" />
+    </p>
+
+    <p>Category</p>
+    <input (change)="filter($event.target)" type="radio" id="All" name="course" value="All" style="margin-bottom: 25px" checked="checked" />
+    All
+    <br />
+
+    <ng-container *ngFor="let item of allCategory">
+      <input (change)="filter($event.target)" type="radio" id="{{ item }}" name="course" value="{{ item }}" style="margin-bottom: 25px" />
+      {{ item }}
+      <br />
+    </ng-container>
+  </div>
+
+  <div class="div-right">
+    <div class="underline"></div>
+    <p>{{ numofcourses }} Courses Available</p>
+    <div style="display: flex; flex-wrap: wrap">
+      <ng-container *ngFor="let course of allCourses">
+        <div class="card">
+          <div class="card-item" style="margin-bottom: 80px">
+            <div class="circle"></div>
+            <div>
+              <p style="margin-bottom: 5px">{{ course.title }}</p>
+              <p style="font-weight: 600; font-size: small">{{ course.instructor_name }}</p>
+            </div>
+          </div>
+
+          <div class="card-item">
+            <i class="material-icons" style="width: 24px">info_outlined</i>
+            <p style="line-height: 1.5">{{ course.description }}</p>
+          </div>
+          <div class="card-item">
+            <i class="material-icons">date_range</i>
+            <p>
+              <span style="font-size: small; color: #5c5b5b">Completed</span><br />
+              <span style="font-size: small; color: #5c5b5b">{{course.startMonth}} {{course.startDate}} - {{course.endMonth}} {{course.endDate}} </span><br />
+              <span style="color: #9c9c9c; font-size: small;">{{course.duration}} week course, {{course.estimated_workload}}</span>
+            </p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>
